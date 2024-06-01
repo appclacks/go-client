@@ -109,7 +109,7 @@ func (c *Client) sendRequest(ctx context.Context, url string, method string, bod
 	return response, nil
 }
 
-func JsonMerge(s1 any, s2 any) (map[string]any, error) {
+func jsonMerge(s1 any, s2 any) (map[string]any, error) {
 	result := make(map[string]any)
 	str1, err := json.Marshal(s1)
 	if err != nil {

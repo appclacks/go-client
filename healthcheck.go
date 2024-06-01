@@ -146,3 +146,12 @@ type CabourotteDiscoveryOutput struct {
 	TLSChecks     []Healthcheck `json:"tls-checks,omitempty"`
 	CommandChecks []Healthcheck `json:"command-checks,omitempty"`
 }
+
+type internalUpdateHealthcheckInput struct {
+	Name        string            `json:"name"`
+	Description string            `json:"description,omitempty"`
+	Labels      map[string]string `json:"labels,omitempty"`
+	Interval    string            `json:"interval"`
+	Enabled     bool              `json:"enabled"`
+	Timeout     string            `json:"timeout"`
+}
