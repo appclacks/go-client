@@ -42,15 +42,17 @@ func loadEnv(client *Client) {
 	}
 }
 
-func New(endpoint string) (*Client, error) {
+func New() (*Client, error) {
 	client := &Client{
-		http:     &http.Client{},
-		endpoint: endpoint,
+		http: &http.Client{},
 	}
 
 	loadEnv(client)
 	if (client.username == "" && client.password != "") || (client.username != "" && client.password == "") {
 		return nil, errors.New("invalid basic auth credentials")
+	}
+	if client.endpoint == "" {
+		client.endpoint = "http://127.0.0.1:9000"
 	}
 	return client, nil
 }
