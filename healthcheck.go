@@ -1,8 +1,10 @@
 package client
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -154,4 +156,44 @@ type internalUpdateHealthcheckInput struct {
 	Interval    string            `json:"interval"`
 	Enabled     bool              `json:"enabled"`
 	Timeout     string            `json:"timeout"`
+}
+
+func (c *Client) DeleteHealthcheck(ctx context.Context, input DeleteHealthcheckInput) (Response, error) {
+	var result Response
+	_, err := c.sendRequest(ctx, fmt.Sprintf("/api/v1/healthcheck/%s", input.ID), http.MethodDelete, nil, &result, nil)
+	if err != nil {
+		return Response{}, err
+	}
+	return result, nil
+}
+
+func (c *Client) GetHealthcheck(ctx context.Context, input GetHealthcheckInput) (Healthcheck, error) {
+	var result Healthcheck
+	_, err := c.sendRequest(ctx, fmt.Sprintf("/api/v1/healthcheck/%s", input.Identifier), http.MethodGet, nil, &result, nil)
+	if err != nil {
+		return Healthcheck{}, err
+	}
+	return result, nil
+}
+
+func (c *Client) ListHealthchecks(ctx context.Context) (ListHealthchecksOutput, error) {
+	var result ListHealthchecksOutput
+	_, err := c.sendRequest(ctx, "/api/v1/healthcheck", http.MethodGet, nil, &result, nil)
+	if err != nil {
+		return ListHealthchecksOutput{}, err
+	}
+	return result, nil
+}
+
+func (c *Client) CabourotteDiscovery(ctx context.Context, input CabourotteDiscoveryInput) (CabourotteDiscoveryOutput, error) {
+	var result CabourotteDiscoveryOutput
+	queryParams := make(map[string]string)
+	if input.Labels != "" {
+		queryParams["labels"] = input.Labels
+	}
+	_, err := c.sendRequest(ctx, "/cabourotte/discovery", http.MethodGet, nil, &result, queryParams)
+	if err != nil {
+		return CabourotteDiscoveryOutput{}, err
+	}
+	return result, nil
 }
