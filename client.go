@@ -17,7 +17,6 @@ type Client struct {
 	username string
 	password string
 	endpoint string
-	profile  string
 }
 
 var (
@@ -31,10 +30,6 @@ func loadEnv(client *Client) {
 
 	if os.Getenv("APPCLACKS_USER_PASSWORD") != "" {
 		client.password = os.Getenv("APPCLACKS_USER_PASSWORD")
-	}
-
-	if os.Getenv("APPCLACKS_PROFILE") != "" {
-		client.profile = os.Getenv("APPCLACKS_PROFILE")
 	}
 
 	if os.Getenv("APPCLACKS_API_ENDPOINT") != "" {
