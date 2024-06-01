@@ -24,11 +24,11 @@ var (
 )
 
 func loadEnv(client *Client) {
-	if os.Getenv("APPCLACKS_USER_NAME") != "" {
+	if os.Getenv("APPCLACKS_USERNAME") != "" {
 		client.username = os.Getenv("APPCLACKS_USER_NAME")
 	}
 
-	if os.Getenv("APPCLACKS_USER_PASSWORD") != "" {
+	if os.Getenv("APPCLACKS_PASSWORD") != "" {
 		client.password = os.Getenv("APPCLACKS_USER_PASSWORD")
 	}
 
@@ -50,6 +50,18 @@ func New() (*Client, error) {
 		client.endpoint = "http://127.0.0.1:9000"
 	}
 	return client, nil
+}
+
+func (c *Client) SetUsername(username string) {
+	c.username = username
+}
+
+func (c *Client) SetPassword(password string) {
+	c.password = password
+}
+
+func (c *Client) SetEndpoint(endpoint string) {
+	c.endpoint = endpoint
 }
 
 func (c *Client) sendRequest(ctx context.Context, url string, method string, body any, result any, queryParams map[string]string) (*http.Response, error) {
