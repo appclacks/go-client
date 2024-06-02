@@ -29,7 +29,7 @@ func loadEnv(client *Client) {
 	}
 
 	if os.Getenv("APPCLACKS_PASSWORD") != "" {
-		client.password = os.Getenv("APPCLACKS_USER_PASSWORD")
+		client.password = os.Getenv("APPCLACKS_PASSWORD")
 	}
 
 	if os.Getenv("APPCLACKS_API_ENDPOINT") != "" {
