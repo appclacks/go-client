@@ -25,7 +25,7 @@ var (
 
 func loadEnv(client *Client) {
 	if os.Getenv("APPCLACKS_USERNAME") != "" {
-		client.username = os.Getenv("APPCLACKS_USER_NAME")
+		client.username = os.Getenv("APPCLACKS_USERNAME")
 	}
 
 	if os.Getenv("APPCLACKS_PASSWORD") != "" {
