@@ -20,6 +20,5 @@ type CreateOrUpdatePushgatewayMetricInput struct {
 	Labels      map[string]string `json:"labels" description:"Healthcheck labels" validate:"dive,keys,max=255,min=1,endkeys,max=255,min=1"`
 	TTL         string            `json:"ttl"`
 	Type        string            `json:"type"`
-	ExpiresAt   time.Time         `json:"expires_at"`
 	Value       float32           `json:"value" validate:"required"`
 }
