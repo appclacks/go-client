@@ -22,3 +22,7 @@ type CreateOrUpdatePushgatewayMetricInput struct {
 	Type        string            `json:"type"`
 	Value       float32           `json:"value" validate:"required"`
 }
+
+type DeleteMetricInput struct {
+	Identifier string `json:"identifier" validate:"required"`
+}
