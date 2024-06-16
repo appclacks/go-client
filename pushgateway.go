@@ -19,10 +19,14 @@ type CreateOrUpdatePushgatewayMetricInput struct {
 	Description string            `json:"description,omitempty"`
 	Labels      map[string]string `json:"labels" description:"Healthcheck labels" validate:"dive,keys,max=255,min=1,endkeys,max=255,min=1"`
 	TTL         string            `json:"ttl"`
-	Type        string            `json:"type"`
+	Type        string            `json:"type" validate:"oneof=counter gauge histogram summary"`
 	Value       float32           `json:"value" validate:"required"`
 }
 
-type DeleteMetricInput struct {
+type DeletePushgatewayMetricInput struct {
 	Identifier string `json:"identifier" validate:"required"`
+}
+
+type ListPushgatewayMetricsOutput struct {
+	Result []PushgatewayMetric `json:"result"`
 }
