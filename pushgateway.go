@@ -38,7 +38,7 @@ type ListPushgatewayMetricsOutput struct {
 
 func (c *Client) CreateOrUpdatePushgatewayMetric(ctx context.Context, input CreateOrUpdatePushgatewayMetricInput) (Response, error) {
 	var result Response
-	_, err := c.sendRequest(ctx, "/api/v1/pushgateway", http.MethodPost, nil, &result, nil)
+	_, err := c.sendRequest(ctx, "/api/v1/pushgateway", http.MethodPost, input, &result, nil)
 	if err != nil {
 		return Response{}, err
 	}
