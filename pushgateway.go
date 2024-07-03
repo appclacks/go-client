@@ -15,7 +15,7 @@ type PushgatewayMetric struct {
 	TTL         string            `json:"ttl"`
 	Type        string            `json:"type"`
 	CreatedAt   time.Time         `json:"created_at"`
-	ExpiresAt   time.Time         `json:"expires_at"`
+	ExpiresAt   *time.Time        `json:"expires_at,omitempty"`
 	Value       float32           `json:"value"`
 }
 
