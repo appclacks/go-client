@@ -62,3 +62,12 @@ func (c *Client) ListPushgatewayMetrics(ctx context.Context) (ListPushgatewayMet
 	}
 	return result, nil
 }
+
+func (c *Client) DeleteAllPushgatewayMetrics(ctx context.Context) (Response, error) {
+	var result Response
+	_, err := c.sendRequest(ctx, "/api/v1/pushgateway", http.MethodDelete, nil, &result, nil)
+	if err != nil {
+		return Response{}, err
+	}
+	return result, nil
+}
